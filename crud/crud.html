@@ -163,8 +163,8 @@
 
 
 const API_BASE = 'https://jsonplaceholder.typicode.com/posts';
-let posts = [];            // local cache of posts currently shown
-let deleteTargetId = null; // id to delete
+let posts = [];           
+let deleteTargetId = null; 
 
 $(function() {
   const $loading = $('#loading');
@@ -175,7 +175,7 @@ $(function() {
   const toastEl = document.getElementById('liveToast');
   const bsToast = new bootstrap.Toast(toastEl);
 
-  // show toast
+  
   function showToast(message, type='primary') {
     $('#liveToast').removeClass('text-bg-primary text-bg-success text-bg-danger text-bg-warning');
     $('#liveToast').addClass('text-bg-' + (type || 'primary'));
@@ -183,7 +183,6 @@ $(function() {
     bsToast.show();
   }
 
-  // render functions
   function renderTable(list) {
     $tableBody.empty();
     if (!list.length) {
@@ -244,13 +243,13 @@ $(function() {
     return s.length > n ? s.slice(0,n) + '...' : s;
   }
 
-  // initial load (Read)
+  
   function loadPosts() {
     $loading.show();
     $tableView.addClass('d-none'); $cardView.addClass('d-none');
     $.get(API_BASE + '?_limit=10')
       .done(function(data) {
-        posts = data.slice(); // keep local
+        posts = data.slice();
         renderTable(posts);
         renderCards(posts);
         $tableView.removeClass('d-none');
@@ -280,7 +279,7 @@ $(function() {
     }
   });
 
-  // search/filter
+ 
   $('#searchInput').on('input', function() {
     const q = $(this).val().toLowerCase().trim();
     const filtered = posts.filter(p => p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q));
@@ -288,7 +287,6 @@ $(function() {
     renderCards(filtered);
   });
 
-  // Create
   $('#createForm').on('submit', function(e) {
     e.preventDefault();
     const title = $('#createTitle').val().trim();
@@ -299,7 +297,7 @@ $(function() {
     if (!body) { showToast('Body required', 'warning'); return; }
 
     $('#createSpinner').removeClass('d-none');
-    // POST to API
+   
     $.ajax({
       url: API_BASE,
       method: 'POST',
@@ -307,7 +305,7 @@ $(function() {
       contentType: 'application/json; charset=UTF-8'
     })
     .done(function(resp) {
-      // JSONPlaceholder returns created object with id (101 etc.)
+      
       posts.unshift(resp);
       renderTable(posts);
       renderCards(posts);
@@ -324,9 +322,9 @@ $(function() {
 
   $('#clearCreate').on('click', function(){ $('#createForm')[0].reset(); });
 
-  // Event delegation for edit / delete in table and cards
+
   $('#postsTableBody, #cardView').on('click', '.edit-btn', function() {
-    // find id
+    
     const $row = $(this).closest('[data-id]');
     const id = $row.data('id') || $(this).closest('.col').data('id');
     openEditModal(id);
@@ -340,7 +338,7 @@ $(function() {
     md.show();
   });
 
-  // open edit modal with prefilled data
+ 
   function openEditModal(id) {
     const item = posts.find(p => p.id == id);
     if (!item) { showToast('Item not found', 'warning'); return; }
@@ -349,12 +347,11 @@ $(function() {
     $('#editBody').val(item.body);
     $('#editUserId').val(item.userId);
     $('#editModal').modal && $('#editModal').modal('show');
-    // Using bootstrap modal show programmatically
+
     const modal = new bootstrap.Modal(document.getElementById('editModal'));
     modal.show();
   }
 
-  // Save edit (Update)
   $('#editForm').on('submit', function(e) {
     e.preventDefault();
     const id = $('#editId').val();
@@ -374,7 +371,7 @@ $(function() {
       contentType: 'application/json; charset=UTF-8'
     })
     .done(function(resp) {
-      // update local list
+      
       const idx = posts.findIndex(p => p.id == id);
       if (idx > -1) posts[idx] = resp;
       renderTable(posts);
@@ -391,18 +388,18 @@ $(function() {
     });
   });
 
-  // Confirm delete action
+
   $('#confirmDeleteBtn').on('click', function() {
     if (!deleteTargetId) return;
     const id = deleteTargetId;
-    // show loading state on modal button
+    
     $(this).prop('disabled', true).text('Deleting...');
     $.ajax({
       url: API_BASE + '/' + id,
       method: 'DELETE'
     })
     .done(function() {
-      // remove from local list
+     
       posts = posts.filter(p => p.id != id);
       renderTable(posts);
       renderCards(posts);
@@ -419,26 +416,26 @@ $(function() {
     });
   });
 
-  // Refresh list
+ 
   $('#refreshBtn').on('click', function(){ loadPosts(); showToast('Refreshed', 'primary'); });
 
-  // basic accessibility: focus first invalid in create form
+  
   $('#createForm').on('invalid', function(e){
     e.preventDefault();
     const firstInvalid = $(this).find(':invalid').first();
     if (firstInvalid.length) firstInvalid.focus();
   });
 
-  // initial render helpers
+
   function initialRender() {
     renderTable(posts);
     renderCards(posts);
   }
 
-  // hide initial loading after 5s if not already (safety)
+ 
   setTimeout(()=>{ $loading.hide(); if(!posts.length) initialRender(); }, 5000);
 
-}); // end ready
+});
 </script>
 </body>
 </html>

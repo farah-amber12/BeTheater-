@@ -38,7 +38,7 @@
       <li><a href="#">Actors</a></li>
       <li><a href="#">Contact</a></li>
       <li><a href="#">Tickets</a></li>
-      <li class="buy-now"><a href="finalcheckout.html">Buy now</a></li>
+      <li class="buy-now"><a href="finalcheckout/finalcheckout.html">Buy now</a></li>
     </ul>
   </div>
 
@@ -103,7 +103,7 @@
       </div>
     </div>
 
-    <!-- Navigation Dots -->
+   
     <div class="slider-dots">
       <span class="dot active"></span>
       <span class="dot"></span>
@@ -233,6 +233,89 @@
   <h2>Buy a ticket here</h2>
 </section>
 
+
+
+<section class="testimonials-section">
+  <h2>Customer Testimonials</h2>
+
+  <div class="container">
+    <div class="row justify-content-center">
+
+      
+      <div class="col-md-4 testimonial">
+        <img src="https://i.pravatar.cc/80?img=12" alt="Customer 1">
+        <h5>David Attenborough</h5>
+       
+        <div class="stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+
+        <p>“BeTheater provided an unforgettable night! Everything from booking to the show was smooth and professional.”</p>
+      </div>
+
+   
+      <div class="col-md-4 testimonial">
+        <img src="https://i.pravatar.cc/80?img=32" alt="Customer 2">
+        <h5>Jane Austen</h5>
+              
+              <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+
+        <p>“Great experience! The seating was comfortable and the sound quality was top-notch. Highly recommend.”</p>
+      </div>
+
+    </div>
+
+    
+    <div id="moreTestimonials" class="row justify-content-center mt-4" style="display: none;">
+      <div class="col-md-4 testimonial">
+        <img src="360_F_1534035806_6gn57ou4V0dVZY6l30h6nEB5gWQRAP6v.jpg" alt="Customer 3">
+        <h5>William David</h5>
+        <div class="stars">
+  <i class="fa-solid fa-star"></i>
+  <i class="fa-solid fa-star"></i>
+  <i class="fa-solid fa-star"></i>
+  <i class="fa-solid fa-star"></i>
+  <i class="fa-solid fa-star"></i>
+</div>
+
+        <p>“Absolutely loved it! The staff was so kind, and the whole event felt magical.”</p>
+      </div>
+
+      <div class="col-md-4 testimonial">
+        <img src="smiling-3d-cartoon-man_975163-772.jpg" alt="Customer 4">
+        <h5>mr keatings</h5>
+       <div class="stars">
+  <i class="fa-solid fa-star"></i>
+  <i class="fa-solid fa-star"></i>
+  <i class="fa-solid fa-star"></i>
+  <i class="fa-solid fa-star"></i>
+ 
+</div>
+
+        <p>“The best theater experience I’ve ever had! Beautiful atmosphere and seamless service but i felt a little mismanagement.”</p>
+      </div>
+    </div>
+
+    <button id="viewMoreBtn" class="view-more-btn mt-4">View More</button>
+  </div>
+</section>
+
+
+
+
+
+
+
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-column">
@@ -288,6 +371,18 @@
 
 
 
+<script>
+  const viewMoreBtn = document.getElementById('viewMoreBtn');
+  const moreTestimonials = document.getElementById('moreTestimonials');
+  let expanded = false;
+
+  viewMoreBtn.addEventListener('click', () => {
+    expanded = !expanded;
+    moreTestimonials.style.display = expanded ? 'flex' : 'none';
+    viewMoreBtn.textContent = expanded ? 'View Less' : 'View More';
+  });
+  
+</script>
 
 
 

@@ -518,4 +518,123 @@ body {
     flex-direction: column;
     align-items: center;
   }
+ 
 }
+
+
+
+/* ==== Customer Testimonials Section ==== */
+.testimonials-section {
+  background-color: #a7a7a5; /* dark navy backdrop */
+  padding: 80px 0;
+  text-align: center;
+ 
+}
+
+.testimonials-section h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ==== Testimonial Cards ==== */
+.testimonial {
+  background-color: #ededed;
+  border-radius: 12px;
+  padding: 30px 20px;
+  margin: 15px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Profile Images */
+.testimonial img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #020202;
+}
+
+/* Name + Text */
+.testimonial h5 {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #1f2c40;
+}
+
+.testimonial p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Stars */
+.stars {
+  color : #756154;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+/* View More Button */
+.view-more-btn {
+  background-color: #727167;
+  color: #1f2c40;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.view-more-btn:hover {
+  background-color: #221f15;
+  color: #fff;
+}
+
+
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .testimonial {
+    max-width: 90%;
+    margin: 15px auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .testimonials-section .row {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+  }
+  .testimonial {
+    flex: 1 1 40%;
+    max-width: 400px;
+  }
+}
+/* Tablets */
+@media (max-width: 992px) {
+  .actors-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .actor {
+    flex: 1 1 45%; /* two per row */
+    max-width: 45%;
+  }
+}
+
+
